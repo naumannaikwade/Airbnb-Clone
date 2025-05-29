@@ -3,8 +3,14 @@ require("dotenv").config();
 const axios = require("axios");
 
 module.exports.index = async (req, res) => {
-  const allListings = await Listing.find({});
-  res.render("listings/index.ejs", { allListings });
+  const { category } = req.query;
+  let allListings;
+  if (category) {
+    allListings = await Listing.find({ category });
+  } else {
+    allListings = await Listing.find({});
+  }
+  res.render("listings/index.ejs", { allListings, category: category || "All" });
 };
 
 module.exports.new = (req, res) => {
@@ -83,4 +89,21 @@ module.exports.delete = async (req, res) => {
   console.log(deletedListing);
   req.flash("success", "Listing Deleted!");
   res.redirect("/listings");
+};
+
+module.exports.search = async (req, res) => {
+  const { q } = req.query;
+  if (!q) {
+    req.flash("error", "Search query missing.");
+    return res.redirect("/listings");
+  }
+
+  const listings = await Listing.find({
+    title: { $regex: q, $options: "i" }, // case-insensitive match
+  });
+
+  res.render("listings/index.ejs", {
+    allListings: listings,
+    category: null,
+  });
 };

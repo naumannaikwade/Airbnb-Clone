@@ -122,3 +122,32 @@ body {
   height: 400px;
   width: 80vh;
 }
+
+/* mobile responsive  */
+@media (max-width: 768px) {
+  .f-info {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem 0;
+  }
+
+  #map {
+    width: 100% !important;
+    height: 300px;
+  }
+
+  .btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .navbar {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .card-img-top {
+    height: 200px; /* To avoid super tall images on mobile */
+  }
+}

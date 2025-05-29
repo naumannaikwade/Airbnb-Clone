@@ -13,7 +13,7 @@
     display: inline;
     margin-right: 0.5rem;
   }
-  .search-input{
+  .search-input {
     border-radius: 2rem;
     padding: 0.5rem 2.5rem 0.5rem 2.5rem;
     font-size: 0.9rem;
@@ -39,12 +39,17 @@
       </div>
 
       <div class="navbar-nav ms-auto">
-        <form class="d-flex" role="search">
+        <form
+          class="d-flex"
+          role="search"
+          method="GET"
+          action="/listings/search"
+        >
           <input
             class="form-control me-2 search-input"
             type="search"
             placeholder="Search destination"
-            
+            name="q"
           />
           <button class="btn search-btn" type="submit">
             <i class="fa-solid fa-magnifying-glass"></i>Search

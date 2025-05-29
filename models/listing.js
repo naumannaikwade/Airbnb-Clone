@@ -17,6 +17,11 @@ const listingSchema = new Schema({
   price: Number,
   location: String,
   country: String,
+  category: {
+    type: String,
+    enum: ['Amazing Views', 'Beach', 'Luxe', 'Hanoks', 'Cases Particular', 'Minsus', 'Hotels', 'Warehouse','Pet House','International','Nature','Satellite'], // Example categories
+    required: true
+  },
   reviews: [
     {
       type: Schema.Types.ObjectId,

@@ -18,6 +18,7 @@
           value="<%= listing.title%>"
           class="form-control"
           required
+          id="title"
         />
         <div class="valid-feedback">Looks Good!</div>
         <div class="invalid-feedback">Please enter Title</div>
@@ -30,6 +31,7 @@
           name="listing[description]"
           class="form-control"
           required
+          id="description"
         >
 <%= listing.description%></textarea
         >
@@ -48,6 +50,7 @@
           type="file"
           name="listing[image]"
           class="form-control"
+          id="image"
         />
       </div>
 
@@ -60,6 +63,7 @@
             value="<%= listing.price%>"
             class="form-control"
             required
+            id="price"
           />
           <div class="valid-feedback">Looks Good!</div>
           <div class="invalid-feedback">Please enter valid Price</div>
@@ -72,6 +76,7 @@
             value="<%= listing.country%>"
             class="form-control"
             required
+            id="country"
           />
           <div class="valid-feedback">Looks Good!</div>
           <div class="invalid-feedback">Please enter name of Country</div>
@@ -86,12 +91,13 @@
           value="<%= listing.location%>"
           class="form-control"
           required
+          id="location"
         />
         <div class="valid-feedback">Looks Good!</div>
         <div class="invalid-feedback">Please enter name of Location</div>
       </div>
 
-      <button class="btn btn-dark edit-btn mt-2 mb-2">add</button>
+      <button class="btn btn-dark edit-btn mt-2 mb-2">Update Listing</button>
     </form>
   </div>
 </div>

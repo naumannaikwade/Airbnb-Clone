@@ -18,6 +18,7 @@
           placeholder="Add a catchy title"
           class="form-control"
           required
+          id="title"
         />
         <div class="valid-feedback">Looks Good!</div>
         <div class="invalid-feedback">Please enter Title</div>
@@ -26,15 +27,35 @@
       <div class="mb-3">
         <label for="description" class="form-label">Description</label>
         <textarea
-          type="text"
           name="listing[description]"
           placeholder="Add description to your listing"
           class="form-control"
           required
+          id="description"
         ></textarea>
         <div class="valid-feedback">Looks Good!</div>
         <div class="invalid-feedback">Please enter Description</div>
       </div>
+
+       <div class="mb-3">
+          <label for="category" class="form-label">Category</label>
+          <select name="listing[category]" id="category" class="form-select" required>
+            <option value="">Choose a category</option>
+            <option value="Amazing Views">Amazing views</option>
+            <option value="Beach">Beach</option>
+            <option value="Luxe">Luxe</option>
+            <option value="Hanoks">Hanoks</option>
+            <option value="Cases Particular">Cases Particular</option>
+            <option value="Minsus">Minsus</option>
+            <option value="Hotels">Hotels</option>
+            <option value="Warehouse">Warehouse</option>
+            <option value="Pet House">Pet House</option>
+            <option value="International">International</option>
+            <option value="Nature">Nature</option>
+            <option value="Satellite">Satellite</option>
+          </select>
+          <div class="invalid-feedback">Please select a category</div>
+        </div>
 
       <!-- <div class="mb-3">
         <label for="image" class="form-label">Image Url / Link</label>
@@ -52,6 +73,7 @@
           type="file"
           name="listing[image]"
           class="form-control"
+          id="image"
         />
       </div>
 
@@ -63,6 +85,7 @@
             placeholder="eg. 1200"
             class="form-control"
             required
+            id="price"
           />
           <div class="valid-feedback">Looks Good!</div>
           <div class="invalid-feedback">Please enter valid Price</div>
@@ -75,6 +98,7 @@
             placeholder="eg. INDIA"
             class="form-control"
             required
+            id="country"
           />
           <div class="valid-feedback">Looks Good!</div>
           <div class="invalid-feedback">Please enter name of Country</div>
@@ -89,6 +113,7 @@
           placeholder="eg. Jaipur, Rajasthan"
           class="form-control"
           required
+          id="location"
         />
         <div class="valid-feedback">Looks Good!</div>
         <div class="invalid-feedback">Please enter Location</div>
