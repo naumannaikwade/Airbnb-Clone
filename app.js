@@ -68,10 +68,6 @@ const sessionOptions = {
   },
 };
 
-// app.get("/", (req, res) => {
-//   res.send("working");
-// });
-
 app.use(session(sessionOptions));
 app.use(flash());
 
@@ -98,6 +94,10 @@ app.use((req, res, next) => {
 //   let registeredUser= await User.register(fakeUser,"helloworld");
 //   res.send(registeredUser);
 // })
+
+app.get("/", (req, res) => {
+  res.redirect("/listings");
+});
 
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
