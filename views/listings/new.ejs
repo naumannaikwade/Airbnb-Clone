@@ -1,7 +1,118 @@
 <%- layout("/layouts/boilerplate") %>
 
+<style>
+  .add-form {
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .form-control, .form-select {
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+  }
+
+  .form-label {
+    font-weight: 500;
+  }
+
+  .add-btn {
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+  }
+
+  .valid-feedback, .invalid-feedback {
+    font-size: 0.85rem;
+  }
+
+  /* Large devices (≥992px) */
+  @media (min-width: 992px) {
+    .add-form {
+      margin-bottom: 2rem;
+    }
+    .form-control, .form-select {
+      font-size: 1rem;
+    }
+    .form-label {
+      font-size: 1rem;
+    }
+    .add-btn {
+      font-size: 1rem;
+      min-width: 120px;
+    }
+    .mb-3 {
+      margin-bottom: 1.5rem !important;
+    }
+  }
+
+  /* Medium devices (576px–991px) */
+  @media (min-width: 576px) and (max-width: 991px) {
+    .add-form {
+      margin: 0 auto 1.5rem;
+      max-width: 600px;
+      padding: 1.25rem;
+    }
+    .form-control, .form-select {
+      font-size: 0.95rem;
+      padding: 0.6rem;
+    }
+    .form-label {
+      font-size: 0.95rem;
+    }
+    .add-btn {
+      font-size: 0.9rem;
+      min-width: 100px;
+    }
+    .mb-3 {
+      margin-bottom: 1.25rem !important;
+    }
+    .row {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .col-md-4, .col-md-8 {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+  }
+
+  /* Small devices (<576px) */
+  @media (max-width: 575px) {
+    .add-form {
+      margin: 0 auto 1rem;
+      max-width: 100%;
+      padding: 1rem;
+    }
+    .form-control, .form-select {
+      font-size: 0.9rem;
+      padding: 0.5rem;
+    }
+    .form-label {
+      font-size: 0.9rem;
+    }
+    .add-btn {
+      font-size: 0.85rem;
+      width: 100%;
+      padding: 0.5rem;
+    }
+    .mb-3 {
+      margin-bottom: 1rem !important;
+    }
+    .row {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .col-md-4, .col-md-8 {
+      padding-left: 0.25rem;
+      padding-right: 0.25rem;
+    }
+  }
+</style>
+
 <div class="row mt-3">
-  <div class="col-8 offset-2">
+  <div class="col-12 col-lg-8 offset-lg-2 add-form">
     <h3>Create a New Listing</h3>
     <form
       action="/listings"
@@ -32,42 +143,33 @@
           class="form-control"
           required
           id="description"
+          rows="5"
         ></textarea>
         <div class="valid-feedback">Looks Good!</div>
         <div class="invalid-feedback">Please enter Description</div>
       </div>
 
-       <div class="mb-3">
-          <label for="category" class="form-label">Category</label>
-          <select name="listing[category]" id="category" class="form-select" required>
-            <option value="">Choose a category</option>
-            <option value="Amazing Views">Amazing views</option>
-            <option value="Beach">Beach</option>
-            <option value="Luxe">Luxe</option>
-            <option value="Hanoks">Hanoks</option>
-            <option value="Cases Particular">Cases Particular</option>
-            <option value="Minsus">Minsus</option>
-            <option value="Hotels">Hotels</option>
-            <option value="Warehouse">Warehouse</option>
-            <option value="Pet House">Pet House</option>
-            <option value="International">International</option>
-            <option value="Nature">Nature</option>
-            <option value="Satellite">Satellite</option>
-          </select>
-          <div class="invalid-feedback">Please select a category</div>
-        </div>
+      <div class="mb-3">
+        <label for="category" class="form-label">Category</label>
+        <select name="listing[category]" id="category" class="form-select" required>
+          <option value="">Choose a category</option>
+          <option value="Amazing Views">Amazing views</option>
+          <option value="Beach">Beach</option>
+          <option value="Luxe">Luxe</option>
+          <option value="Hanoks">Hanoks</option>
+          <option value="Cases Particular">Cases Particular</option>
+          <option value="Minsus">Minsus</option>
+          <option value="Hotels">Hotels</option>
+          <option value="Warehouse">Warehouse</option>
+          <option value="Pet House">Pet House</option>
+          <option value="International">International</option>
+          <option value="Nature">Nature</option>
+          <option value="Satellite">Satellite</option>
+        </select>
+        <div class="invalid-feedback">Please select a category</div>
+      </div>
 
-      <!-- <div class="mb-3">
-        <label for="image" class="form-label">Image Url / Link</label>
-        <input
-          type="text"
-          name="listing[image]"
-          placeholder="enter image link/url"
-          class="form-control"
-        />
-      </div> -->
-
-        <div class="mb-3">
+      <div class="mb-3">
         <label for="image" class="form-label">Upload Listing Image</label>
         <input
           type="file"
@@ -78,9 +180,10 @@
       </div>
 
       <div class="row">
-        <div class="mb-3 col-md-4">
+        <div class="mb-3 col-12 col-md-4">
           <label for="price" class="form-label">Price</label>
           <input
+            type="number"
             name="listing[price]"
             placeholder="eg. 1200"
             class="form-control"
@@ -90,7 +193,7 @@
           <div class="valid-feedback">Looks Good!</div>
           <div class="invalid-feedback">Please enter valid Price</div>
         </div>
-        <div class="mb-3 col-md-8">
+        <div class="mb-3 col-12 col-md-8">
           <label for="country" class="form-label">Country</label>
           <input
             type="text"
@@ -119,7 +222,7 @@
         <div class="invalid-feedback">Please enter Location</div>
       </div>
 
-      <button class="btn btn-dark add-btn mb-2 mt-2">add</button>
+      <button class="btn btn-dark add-btn mb-2 mt-2">Add</button>
     </form>
   </div>
 </div>

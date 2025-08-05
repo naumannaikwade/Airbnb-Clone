@@ -1,6 +1,6 @@
 <% if (success && success.length){ %>
-<div class="alert alert-success alert-dismissible fade show col-6 offset-3" role="alert">
-  <%= success%>
+<div class="alert alert-success alert-dismissible fade show alert-custom col-12 col-lg-6 offset-lg-3 mt-3" role="alert">
+  <%= success %>
   <button
     type="button"
     class="btn-close"
@@ -11,8 +11,8 @@
 <% } %>
 
 <% if (error && error.length){ %>
-<div class="alert alert-danger alert-dismissible fade show col-6 offset-3" role="alert">
-  <%= error%>
+<div class="alert alert-danger alert-dismissible fade show alert-custom col-12 col-lg-6 offset-lg-3 mt-3" role="alert">
+  <%= error %>
   <button
     type="button"
     class="btn-close"
@@ -21,3 +21,58 @@
   ></button>
 </div>
 <% } %>
+
+<style>
+  .alert-custom {
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+  .alert-custom .btn-close {
+    padding: 0.5rem;
+  }
+
+  /* Large devices (≥992px) */
+  @media (min-width: 992px) {
+    .alert-custom {
+      font-size: 1rem;
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .alert-custom .btn-close {
+      font-size: 0.9rem;
+    }
+  }
+
+  /* Medium devices (576px–991px) */
+  @media (min-width: 576px) and (max-width: 991px) {
+    .alert-custom {
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 0.95rem;
+      padding: 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .alert-custom .btn-close {
+      font-size: 0.85rem;
+    }
+  }
+
+  /* Small devices (<576px) */
+  @media (max-width: 575px) {
+    .alert-custom {
+      max-width: 100%;
+      font-size: 0.9rem;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .alert-custom .btn-close {
+      font-size: 0.8rem;
+      padding: 0.4rem;
+    }
+  }
+</style>

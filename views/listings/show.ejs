@@ -3,44 +3,201 @@
   const mapToken="<%- process.env.MAP_TOKEN%>";
   const listing =<%- JSON.stringify(listing)%>;
 </script>
+
+<style>
+  .show-card {
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .show-img {
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+    object-fit: cover;
+  }
+
+  .btns {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .edit-btn, .btn-dark {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .review-form {
+    max-width: 100%;
+  }
+
+  .starability-slot {
+    min-height: 30px;
+  }
+
+  .review-card {
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  }
+
+  #map {
+    height: 400px;
+    width: 100%;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  /* Large devices (≥992px) */
+  @media (min-width: 992px) {
+    .show-card {
+      margin-bottom: 1.5rem;
+    }
+    .show-img {
+      height: 400px;
+    }
+    .card-body {
+      padding: 1.5rem;
+    }
+    .card-text, .card-title {
+      font-size: 1rem;
+    }
+    .btns {
+      justify-content: flex-start;
+    }
+    .edit-btn, .btn-dark {
+      min-width: 100px;
+    }
+    .review-form {
+      padding: 1rem 0;
+    }
+    .form-label, .form-control {
+      font-size: 1rem;
+    }
+    .review-card {
+      margin-bottom: 1.5rem;
+    }
+    #map {
+      height: 450px;
+    }
+  }
+
+  /* Medium devices (576px–991px) */
+  @media (min-width: 576px) and (max-width: 991px) {
+    .show-card {
+      margin: 0 auto 1.25rem;
+      max-width: 500px;
+    }
+    .show-img {
+      height: 300px;
+    }
+    .card-body {
+      padding: 1.25rem;
+    }
+    .card-text, .card-title {
+      font-size: 0.95rem;
+    }
+    .btns {
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .edit-btn, .btn-dark {
+      min-width: 90px;
+      font-size: 0.85rem;
+    }
+    .review-form {
+      padding: 0.75rem 0;
+    }
+    .form-label, .form-control {
+      font-size: 0.9rem;
+    }
+    .review-card {
+      margin-bottom: 1.25rem;
+      max-width: 90%;
+    }
+    #map {
+      height: 350px;
+    }
+  }
+
+  /* Small devices (<576px) */
+  @media (max-width: 575px) {
+    .show-card {
+      margin: 0 auto 1rem;
+      max-width: 100%;
+    }
+    .show-img {
+      height: 250px;
+    }
+    .card-body {
+      padding: 1rem;
+    }
+    .card-text, .card-title {
+      font-size: 0.9rem;
+    }
+    .btns {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .edit-btn, .btn-dark {
+      width: 100%;
+      max-width: 200px;
+      font-size: 0.8rem;
+      padding: 0.4rem;
+    }
+    .review-form {
+      padding: 0.5rem 0;
+    }
+    .form-label, .form-control {
+      font-size: 0.85rem;
+    }
+    .review-card {
+      margin: 0 auto 1rem;
+      max-width: 100%;
+    }
+    #map {
+      height: 300px;
+    }
+  }
+</style>
+
 <div class="row mt-3">
-  <div class="col-8 offset-3">
+  <div class="col-12 col-lg-8 offset-lg-3">
     <h3><%=listing.title%></h3>
   </div>
 
-  <div class="card col-6 offset-3 show-card listing-card">
+  <div class="card col-12 col-lg-6 offset-lg-3 show-card listing-card py-2">
     <img
       src="<%=listing.image.url%>"
-      class="card-img-top show-img"
+      class="card-img-top show-img "
       alt="listing_image"
     />
     <div class="card-body">
-      <p class="card-text">Owned by <i> <%= listing.owner.username %> </i></p>
-      <p class="card-text">Category~ <i><b><%= listing.category %></b>  </i></p>
+      <p class="card-text">Owned by <i><%= listing.owner.username %></i></p>
+      <p class="card-text">Category~ <i><b><%= listing.category %></b></i></p>
       <p class="card-text"><%=listing.description%></p>
       <p class="card-text">
-        &#8377; <%=listing.price.toLocaleString("en-IN")%>
+        &#8377; <%=listing.price.toLocaleString("en-IN")%> / night
       </p>
       <p class="card-text"><%=listing.location%></p>
       <p class="card-text"><%=listing.country%></p>
     </div>
   </div>
-  <br />
+
   <% if(currUser && listing.owner._id.equals(currUser._id)) {%>
-  <div class="btns">
+  <div class="btns col-12 col-lg-6 offset-lg-3">
     <a
       href="/listings/<%= listing._id%>/edit"
-      class="btn btn-dark col-lg-1 offset-3 edit-btn"
+      class="btn btn-dark edit-btn"
       >Edit</a
     >
-
     <form action="/listings/<%= listing._id%>?_method=delete" method="post">
-      <button class="btn btn-dark offset-5">Delete</button>
+      <button class="btn btn-dark">Delete</button>
     </form>
   </div>
   <%}%>
 
-  <div class="col-6 offset-3 mb-3">
+  <div class="col-12 col-lg-6 offset-lg-3 mb-3">
     <% if(currUser){%>
     <hr />
     <h4>Leave a Review</h4>
@@ -48,7 +205,7 @@
       action="/listings/<%= listing.id %>/reviews"
       method="post"
       novalidate
-      class="needs-validation"
+      class="needs-validation review-form"
     >
       <div class="mb-3 mt-3">
         <label for="rating" class="form-label">Rating</label>
@@ -99,7 +256,7 @@
           <label for="first-rate5" title="Amazing">5 stars</label>
         </fieldset>
       </div>
-      <div class="mb-3 mt-3">
+      <div class="mb-3">
         <label for="comment" class="form-label">Comments</label>
         <textarea
           name="review[comment]"
@@ -114,12 +271,13 @@
       <button class="btn btn-outline-dark">Submit</button>
     </form>
     <hr />
+    <% }%>
 
-    <% }%> <% if(listing.reviews.length > 0){ %>
+    <% if(listing.reviews.length > 0){ %>
     <div class="row">
       <p><b>All Reviews</b></p>
       <% for(review of listing.reviews){ %>
-      <div class="card col-5 ms-3 mb-3">
+      <div class="card col-12 col-md-5 ms-md-3 mb-3 review-card">
         <div class="card-body">
           <h5 class="card-title">@<%= review.author.username%></h5>
           <p
@@ -128,6 +286,7 @@
           ></p>
           <p class="card-text mb-3"><%= review.comment%></p>
         </div>
+        <% if(currUser && review.author._id.equals(currUser._id)) {%>
         <form
           class="mb-3"
           method="post"
@@ -135,12 +294,14 @@
         >
           <button class="btn btn-sm btn-dark">Delete</button>
         </form>
+        <% } %>
       </div>
       <% } %>
     </div>
     <% } %>
   </div>
-  <div class="col-6 offset-3 mb-3">
+
+  <div class="col-12 col-lg-6 offset-lg-3 mb-3">
     <h3>Where you'll be</h3>
     <div id="map"></div>
   </div>

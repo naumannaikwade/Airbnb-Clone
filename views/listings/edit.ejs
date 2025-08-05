@@ -1,8 +1,135 @@
-<% layout("/layouts/boilerplate") %>
+<%- layout("/layouts/boilerplate") %>
+
+<style>
+  .edit-form {
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .form-control {
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+  }
+
+  .form-label {
+    font-weight: 500;
+  }
+
+  .edit-btn {
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+  }
+
+  .valid-feedback, .invalid-feedback {
+    font-size: 0.85rem;
+  }
+
+  .image-preview img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  /* Large devices (≥992px) */
+  @media (min-width: 992px) {
+    .edit-form {
+      margin-bottom: 2rem;
+    }
+    .form-control {
+      font-size: 1rem;
+    }
+    .form-label {
+      font-size: 1rem;
+    }
+    .edit-btn {
+      font-size: 1rem;
+      min-width: 120px;
+    }
+    .mb-3 {
+      margin-bottom: 1.5rem !important;
+    }
+    .image-preview img {
+      max-height: 300px;
+    }
+  }
+
+  /* Medium devices (576px–991px) */
+  @media (min-width: 576px) and (max-width: 991px) {
+    .edit-form {
+      margin: 0 auto 1.5rem;
+      max-width: 600px;
+      padding: 1.25rem;
+    }
+    .form-control {
+      font-size: 0.95rem;
+      padding: 0.6rem;
+    }
+    .form-label {
+      font-size: 0.95rem;
+    }
+    .edit-btn {
+      font-size: 0.9rem;
+      min-width: 100px;
+    }
+    .mb-3 {
+      margin-bottom: 1.25rem !important;
+    }
+    .row {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .col-md-4, .col-md-8 {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+    .image-preview img {
+      max-height: 250px;
+    }
+  }
+
+  /* Small devices (<576px) */
+  @media (max-width: 575px) {
+    .edit-form {
+      margin: 0 auto 1rem;
+      max-width: 100%;
+      padding: 1rem;
+    }
+    .form-control {
+      font-size: 0.9rem;
+      padding: 0.5rem;
+    }
+    .form-label {
+      font-size: 0.9rem;
+    }
+    .edit-btn {
+      font-size: 0.85rem;
+      width: 100%;
+      padding: 0.5rem;
+    }
+    .mb-3 {
+      margin-bottom: 1rem !important;
+    }
+    .row {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .col-md-4, .col-md-8 {
+      padding-left: 0.25rem;
+      padding-right: 0.25rem;
+    }
+    .image-preview img {
+      max-height: 200px;
+    }
+  }
+</style>
 
 <div class="row mt-3">
-  <div class="col-8 offset-2">
-    <h3>Edit your listing</h3>
+  <div class="col-12 col-lg-8 offset-lg-2 edit-form">
+    <h3>Edit Your Listing</h3>
     <form
       method="post"
       action="/listings/<%= listing._id%>?_method=PUT"
@@ -27,21 +154,19 @@
       <div class="mb-3">
         <label for="description" class="form-label">Description</label>
         <textarea
-          type="text"
           name="listing[description]"
           class="form-control"
           required
           id="description"
-        >
-<%= listing.description%></textarea
-        >
+          rows="5"
+        ><%= listing.description%></textarea>
         <div class="valid-feedback">Looks Good!</div>
         <div class="invalid-feedback">Please enter Description</div>
       </div>
 
-      <div class="mb-3">
-        Original Listing Image <br>
-        <img src="<%= previewImageUrl %>" alt="">
+      <div class="mb-3 image-preview">
+        <label class="form-label">Original Listing Image</label><br>
+        <img src="<%= previewImageUrl %>" alt="listing image">
       </div>
 
       <div class="mb-3">
@@ -55,7 +180,7 @@
       </div>
 
       <div class="row">
-        <div class="mb-3 col-md-4">
+        <div class="mb-3 col-12 col-md-4">
           <label for="price" class="form-label">Price</label>
           <input
             type="number"
@@ -68,7 +193,7 @@
           <div class="valid-feedback">Looks Good!</div>
           <div class="invalid-feedback">Please enter valid Price</div>
         </div>
-        <div class="mb-3 col-md-8">
+        <div class="mb-3 col-12 col-md-8">
           <label for="country" class="form-label">Country</label>
           <input
             type="text"

@@ -1,6 +1,60 @@
 <% layout("/layouts/boilerplate") %>
+
+<style>
+  .alert-custom {
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .alert-heading {
+    margin-bottom: 0.5rem;
+  }
+
+  /* Large devices (≥992px) */
+  @media (min-width: 992px) {
+    .alert-custom {
+      font-size: 1rem;
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .alert-heading {
+      font-size: 1.5rem;
+    }
+  }
+
+  /* Medium devices (576px–991px) */
+  @media (min-width: 576px) and (max-width: 991px) {
+    .alert-custom {
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 0.95rem;
+      padding: 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .alert-heading {
+      font-size: 1.4rem;
+    }
+  }
+
+  /* Small devices (<576px) */
+  @media (max-width: 575px) {
+    .alert-custom {
+      max-width: 100%;
+      font-size: 0.9rem;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .alert-heading {
+      font-size: 1.3rem;
+    }
+  }
+</style>
+
 <div class="row mt-3">
-  <div class="alert alert-danger col-6 offset-3" role="alert">
-    <h4 class="alert-heading"><%= message%></h4>
+  <div class="alert alert-danger col-12 col-lg-6 offset-lg-3 alert-custom" role="alert">
+    <h4 class="alert-heading"><%= message %></h4>
   </div>
 </div>

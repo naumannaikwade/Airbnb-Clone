@@ -3,7 +3,8 @@
     background-color: #fe424d;
     color: white;
     border-radius: 2rem;
-    padding: 0 0.75rem 0 0.75rem;
+    padding: 0 0.75rem;
+    font-size: 0.9rem;
   }
   .search-btn:hover {
     background-color: #fe424d;
@@ -17,6 +18,38 @@
     border-radius: 2rem;
     padding: 0.5rem 2.5rem 0.5rem 2.5rem;
     font-size: 0.9rem;
+  }
+
+  /* Mobile-specific styles */
+  @media (max-width: 767px) {
+    .navbar-nav {
+      text-align: center;
+    }
+    .navbar-nav .nav-link {
+      padding: 0.5rem 0;
+      font-size: 1rem;
+    }
+    .search-input {
+      padding: 0.4rem 1rem;
+      font-size: 0.85rem;
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+    .search-btn {
+      padding: 0.4rem 1rem;
+      font-size: 0.85rem;
+      width: 100%;
+    }
+    .search-btn i {
+      margin-right: 0.3rem;
+    }
+    .d-flex {
+      flex-direction: column;
+      align-items: center;
+    }
+    .navbar-collapse {
+      padding-top: 1rem;
+    }
   }
 </style>
 
@@ -61,7 +94,6 @@
         <a class="nav-link" href="/listings/new">Airbnb your home</a>
         <% if(!currUser){%>
         <a class="nav-link" href="/signup"><b>SignUp</b></a>
-
         <a class="nav-link" href="/login"><b>Login</b></a>
         <% }%> <% if(currUser){%>
         <a class="nav-link" href="/logout"><b>Logout</b></a>

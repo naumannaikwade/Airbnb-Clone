@@ -151,3 +151,7 @@ body {
     height: 200px; /* To avoid super tall images on mobile */
   }
 }
+
+.navbar-brand{
+  margin-left: 20px;
+}
