@@ -10,7 +10,10 @@ module.exports.index = async (req, res) => {
   } else {
     allListings = await Listing.find({});
   }
-  res.render("listings/index.ejs", { allListings, category: category || "All" });
+  res.render("listings/index.ejs", {
+    allListings,
+    category: category || "All",
+  });
 };
 
 module.exports.new = (req, res) => {
@@ -31,7 +34,7 @@ module.exports.show = async (req, res) => {
     req.flash("error", "Listing you requested for does not exist!");
     res.redirect("/listings");
   }
- 
+
   res.render("listings/show.ejs", { listing });
 };
 
@@ -51,9 +54,9 @@ module.exports.create = async (req, res, next) => {
   newListing.image = { url, filename };
   newListing.geometry = response.data.features[0].geometry;
 
-  let savedListing=await newListing.save();
-  console.log(savedListing);
-  
+  let savedListing = await newListing.save();
+  // console.log(savedListing);
+
   req.flash("success", "New listing created!");
   res.redirect("/listings");
 };
@@ -71,14 +74,30 @@ module.exports.edit = async (req, res) => {
 };
 
 module.exports.update = async (req, res) => {
-  let { id } = req.params;
-  let listing = await Listing.findByIdAndUpdate(id, { ...req.body.listing });
+  const { id } = req.params;
+  const MAP_TOKEN = process.env.MAP_TOKEN;
+
+  let listing = await Listing.findByIdAndUpdate(
+    id,
+    { ...req.body.listing },
+    { new: true }
+  );
   if (typeof req.file !== "undefined") {
     let url = req.file.path;
     let filename = req.file.filename;
     listing.image = { url, filename };
-    await listing.save();
   }
+  if (req.body.listing.location) {
+    const encodedLocation = encodeURIComponent(req.body.listing.location);
+    const maptilerUrl = `https://api.maptiler.com/geocoding/${encodedLocation}.json?limit=1&key=${MAP_TOKEN}`;
+
+    const response = await axios.get(maptilerUrl);
+
+    if (response.data.features && response.data.features.length > 0) {
+      listing.geometry = response.data.features[0].geometry;
+    }
+  }
+  await listing.save();
   req.flash("success", "Listing Updated!");
   res.redirect(`/listings/${id}`);
 };
@@ -86,7 +105,7 @@ module.exports.update = async (req, res) => {
 module.exports.delete = async (req, res) => {
   let { id } = req.params;
   let deletedListing = await Listing.findByIdAndDelete(id);
-  console.log(deletedListing);
+  // console.log(deletedListing);
   req.flash("success", "Listing Deleted!");
   res.redirect("/listings");
 };

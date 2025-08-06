@@ -164,6 +164,26 @@
         <div class="invalid-feedback">Please enter Description</div>
       </div>
 
+      <div class="mb-3">
+        <label for="category" class="form-label">Category</label>
+        <select name="listing[category]" id="category" class="form-select" required>
+          <option value="<%= listing.category%>"><%= listing.category%></option>
+          <option value="Amazing Views">Amazing views</option>
+          <option value="Beach">Beach</option>
+          <option value="Luxe">Luxe</option>
+          <option value="Hanoks">Hanoks</option>
+          <option value="Cases Particular">Cases Particular</option>
+          <option value="Minsus">Minsus</option>
+          <option value="Hotels">Hotels</option>
+          <option value="Warehouse">Warehouse</option>
+          <option value="Pet House">Pet House</option>
+          <option value="International">International</option>
+          <option value="Nature">Nature</option>
+          <option value="Satellite">Satellite</option>
+        </select>
+        <div class="invalid-feedback">Please select a category</div>
+      </div>
+
       <div class="mb-3 image-preview">
         <label class="form-label">Original Listing Image</label><br>
         <img src="<%= previewImageUrl %>" alt="listing image">

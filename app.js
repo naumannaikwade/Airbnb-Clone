@@ -60,7 +60,7 @@ const sessionOptions = {
   store,
   secret: process.env.SECRET,
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
   cookie: {
     expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
     maxAge: 7 * 24 * 60 * 60 * 1000,
@@ -84,16 +84,6 @@ app.use((req, res, next) => {
   res.locals.currUser = req.user;
   next();
 });
-
-// app.get("/demouser",async(req,res)=>{
-//   let fakeUser = new User({
-//     email:"student@gmail.com",
-//     username:"delta-student"
-//   });
-
-//   let registeredUser= await User.register(fakeUser,"helloworld");
-//   res.send(registeredUser);
-// })
 
 app.get("/", (req, res) => {
   res.redirect("/listings");
